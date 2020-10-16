@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 const List<String> currenciesList = [
   'AUD',
   'BRL',
@@ -7,7 +10,6 @@ const List<String> currenciesList = [
   'GBP',
   'HKD',
   'IDR',
-  'ILS',
   'INR',
   'JPY',
   'MXN',
@@ -20,6 +22,29 @@ const List<String> currenciesList = [
   'SGD',
   'USD',
   'ZAR'
+];
+
+const List<String> currenciesFlagsList = [
+  ' 🇦🇺 ',
+  ' 🇧🇷 ',
+  ' 🇨🇦 ',
+  ' 🇨🇳 ',
+  ' 🇪🇺 ',
+  ' 🇬🇧 ',
+  ' 🇭🇰 ',
+  ' 🇮🇩 ',
+  ' 🇮🇳 ',
+  ' 🇯🇵 ',
+  ' 🇲🇽 ',
+  ' 🇳🇴 ',
+  ' 🇳🇿 ',
+  ' 🇵🇱 ',
+  ' 🇷🇴 ',
+  ' 🇷🇺 ',
+  ' 🇸🇪 ',
+  ' 🇸🇬 ',
+  ' 🇺🇸 ',
+  ' 🇿🇦 '
 ];
 
 const List<String> cryptoList = [
