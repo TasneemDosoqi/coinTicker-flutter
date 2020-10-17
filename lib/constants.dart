@@ -22,3 +22,7 @@ BoxShadow containerShadow( Color shadowColor) {
     blurRadius: 7,
   );
 }
+
+class Const {
+  int selectedIndex =0;
+}
