@@ -15,19 +15,22 @@ class PriceScreen extends StatefulWidget {
 class _PriceScreenState extends State<PriceScreen> {
   String result;
   String fromCurrency ='CAD';
+  String fromCurrencyFlag =' 🇨🇦 ';
   String toCurrency = 'CAD';
+  String toCurrencyFlag =' 🇨🇦 ';
+  String CC;
+  String CF;
   int selectedIndex1 = 0;
   int selectedIndex2 = 0;
   final fromTextController = TextEditingController();
+  List<String> currencies;
+
 
   @override
   void initState() {
     super.initState();
-    print(currenciesFlagsList.length);
     loadCurrencies();
   }
-
-  List<String> currencies;
 
   Future<String> loadCurrencies() async {
     String uri = "http://api.openrates.io/latest";
@@ -69,7 +72,6 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(15),
                 child: Column(
-                  // mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
@@ -106,7 +108,7 @@ class _PriceScreenState extends State<PriceScreen> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: Text(
-                                          currenciesFlagsList[selectedIndex1] + currencies[selectedIndex1],
+                                          fromCurrencyFlag + fromCurrency,
                                           style: kTitleStyle,
                                         ),
                                       ),
@@ -160,7 +162,15 @@ class _PriceScreenState extends State<PriceScreen> {
                         Text('convert to', style: kTitleStyle),
                         GestureDetector(
                           onTap: (){
+                            CC = fromCurrency;
+                            CF = fromCurrencyFlag;
+                            fromCurrency = toCurrency;
+                            fromCurrencyFlag = toCurrencyFlag;
+                            toCurrency = CC;
+                            fromCurrencyFlag = CF;
+                            setState(() {
 
+                            });
                           },
                           child: Container(
                               height: 60,
@@ -171,7 +181,7 @@ class _PriceScreenState extends State<PriceScreen> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               child: Icon(
-                                Icons.arrow_downward,
+                                Icons.swap_vert,
                                 color: kWhite,
                               )),
                         )
@@ -213,7 +223,7 @@ class _PriceScreenState extends State<PriceScreen> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: Text(
-                                          currenciesFlagsList[selectedIndex2] + currencies[selectedIndex2],
+                                          toCurrencyFlag + toCurrency,
 
                                           style: kTitleStyle,
                                         ),
@@ -302,6 +312,7 @@ class _PriceScreenState extends State<PriceScreen> {
                   selectedIndex1 = value;
                   print(selectedIndex1);
                   fromCurrency = currencies[selectedIndex1];
+                  fromCurrencyFlag = currenciesFlagsList[selectedIndex1];
 
                 });
               },
@@ -324,6 +335,7 @@ class _PriceScreenState extends State<PriceScreen> {
                 setState(() {
                   selectedIndex2 = value;
                   toCurrency = currencies[selectedIndex2];
+                  toCurrencyFlag = currenciesFlagsList[selectedIndex2];
 
                 });
               },
